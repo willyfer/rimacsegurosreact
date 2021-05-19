@@ -1,12 +1,11 @@
  
 image: atlassian/default-image:2
 
-  pipelines:
-  default:
-    - step:
-        name: Test
+pipelines:
+ default:
+    - step: 
         script:
-          - git push https://heroku:7faa8dc3-6dba-49d1-8462-2f646695b2cd@git.heroku.com/rimacsegurosdev.git
+          - git push https://heroku:7faa8dc3-6dba-49d1-8462-2f646695b2cd@git.heroku.com/rimacsegurosdev.git HEAD
           
     
         
