@@ -9,26 +9,7 @@ image: atlassian/default-image:2
     - step:
         name: Test
         script:
-          - cd sample-python-app
-          - pip install -r requirements.txt
-          - ./manage.py test
+          -git push https://heroku:7faa8dc3-6dba-49d1-8462-2f646695b2cd@git.heroku.com/rimacsegurosdev.git HEAD
           
-    - step:
-        name: Build
-        script:
-          - cd sample-python-app
-          - git archive --format=tar.gz master -o sample-app.tar.gz
-        artifacts:
-          - sample-python-app/sample-app.tar.gz
-      
-    - step:
-        name: Deploy to production
-        deployment: production
-        caches:
-          - pip
-        script:
-          - pipe: atlassian/heroku-deploy:0.1.1
-            variables:
-              HEROKU_API_KEY: $HEROKU_API_KEY
-              HEROKU_APP_NAME: $HEROKU_APP_NAME
-              ZIP_FILE: sample-python-app/sample-app.tar.gz
+    
+        
