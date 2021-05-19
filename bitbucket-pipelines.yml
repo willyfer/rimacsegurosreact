@@ -4,31 +4,31 @@
 # You can specify a custom docker image from Docker Hub as your build environment.
 image: atlassian/default-image:2
 
-pipelines:
+  pipelines:
   default:
-    - parallel:
-      - step:
-          name: 'Build and Test'
-          script:
-            - echo "Your build and test goes here..."
-      - step:
-          name: 'Lint'
-          script:
-            - echo "Your linting goes here..."
-      - step:
-          name: 'Security scan'
-          script:
-            - echo "Your security scan goes here..."
-
-    # The following deployment steps will be executed for each pipeline run. To configure your steps and conditionally deploy see https://support.atlassian.com/bitbucket-cloud/docs/configure-bitbucket-pipelinesyml/
     - step:
-        name: 'Deployment to Staging'
-        deployment: staging
+        name: Test
         script:
-          - echo "Your deployment to staging script goes here..."
+          - cd sample-python-app
+          - pip install -r requirements.txt
+          - ./manage.py test
+          
     - step:
-        name: 'Deployment to Production'
+        name: Build
+        script:
+          - cd sample-python-app
+          - git archive --format=tar.gz master -o sample-app.tar.gz
+        artifacts:
+          - sample-python-app/sample-app.tar.gz
+      
+    - step:
+        name: Deploy to production
         deployment: production
-        trigger: 'manual'
+        caches:
+          - pip
         script:
-          - echo "Your deployment to production script goes here..."
+          - pipe: atlassian/heroku-deploy:0.1.1
+            variables:
+              HEROKU_API_KEY: $HEROKU_API_KEY
+              HEROKU_APP_NAME: $HEROKU_APP_NAME
+              ZIP_FILE: sample-python-app/sample-app.tar.gz
