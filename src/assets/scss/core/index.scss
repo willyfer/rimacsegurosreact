@@ -1,13 +1,126 @@
  @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
-
+ @import './colors/color';
+ 
  body {
-     font-family: 'Lato','Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+     color: $text;
+     font-family: 'Lato', sans-serif!important;
  }
-
- .row {
+h1 ,h2,h3,h4,h5
+{
+    color: $text;
+}
+ .row 
+ {
      display: flex;
  }
- .col-md-6 {
+ .col-md-6 
+ {
      width: 50%;
  }
-    
+ #id 
+ {
+     background-color:#fff;
+ }   
+ #section_home_img
+ { 
+    //background-color: red;
+     background-image: url('../../img/home.svg');
+     background-size: contain;
+    height: 100vh;
+     background-repeat: no-repeat;
+ }
+ #home
+ {
+     padding-top: 2rem;
+ }
+ .row{
+     margin :0!important;
+ }
+.form-control
+ {
+     height: calc(1.5em + 0.75rem + 20px)!important;
+ }
+ .dropdown-toggle::after
+ {
+     color:$primary
+ }
+
+ #link_phone{
+     color:  $cyan;
+ }
+ #brand
+ {
+    background-color: transparent;
+     margin-left: 5rem;
+     @media only screen and (max-width: 600px) {
+  
+         margin-left: 1rem;
+    }
+ }
+ input[type="checkbox" ] {
+    background-color: green;
+}
+.link{
+    color:$link;
+}
+#navbar{
+    z-index: 100000;
+}
+#section_home_img
+{
+      z-index: -100;
+    margin-top: -55px;
+}
+#content-end{
+     margin-right: 5rem;
+     @media only screen and (max-width: 600px) {
+  
+         margin-right: 1rem;
+    }
+}
+.btn-lg, .btn-group-lg > .btn {
+    padding: 1rem 3rem!important;
+    font-size: .8rem!important;
+    font-weight: bold;
+    line-height: 1.7!important;
+    border-radius: 0.3rem;
+}
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+   color: $placeholder!important;
+  opacity: .7; /* Firefox */
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: $placeholder!important;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+   color: $placeholder!important;
+}
+#form_home
+{
+    margin-right: 10rem;
+      @media only screen and (max-width: 600px) {
+  
+         margin-right: 0;
+    }
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+.dropdown-toggle::after
+{
+        margin-left: 1em!important;
+}
+#title_home
+{
+    margin-bottom: 2rem;
+}

@@ -1,3 +1,5 @@
- 
+@import './core/colors/color';
  @import "./core";
- 
+ @import "~bootstrap/scss/bootstrap";
+ @import "./bootstrap-extended/buttons"; 
+ @import "./bootstrap-extended/mixins";

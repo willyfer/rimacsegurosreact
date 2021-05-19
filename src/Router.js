@@ -3,7 +3,7 @@ import { Router, Switch, Route } from "react-router-dom"
 import { history } from "./history"
 import { connect } from "react-redux"
 import { Redirect } from "react-router-dom" 
- 
+import { ProgressBar} from 'react-bootstrap'
 
 // Route-based code splitting
  const home = lazy(() => import("./views/pages/home/home"));
@@ -14,7 +14,7 @@ const RouteConfig = ({ component: Component, fullLayout, ...rest }) => (
     {...rest}
     render={props => {
       return (
-              <Suspense fallback={<div>cargandoo..</div>}>
+              <Suspense fallback={<ProgressBar now={100} />}>
                   <Component {...props} />
                 </Suspense>
               )
