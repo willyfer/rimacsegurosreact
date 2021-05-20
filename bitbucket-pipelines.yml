@@ -5,6 +5,7 @@ pipelines:
  default:
     - step: 
         script:
+          - git pull
           - git push https://heroku:7faa8dc3-6dba-49d1-8462-2f646695b2cd@git.heroku.com/rimacsegurosdev.git HEAD 
           
     
