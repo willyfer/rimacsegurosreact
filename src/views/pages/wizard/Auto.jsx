@@ -1,5 +1,5 @@
 
-import React from 'react'
+import React, { useEffect } from 'react'
 import {
     Tab,
     Row,
@@ -22,7 +22,7 @@ import { marcas, years } from '../../../data/data';
 import { makeStyles } from '@material-ui/core/styles';
 import { AiOutlineLeftCircle } from "react-icons/ai";
 import { useSelector, useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import {
     Select,
     FormControl,
@@ -63,6 +63,7 @@ const useStyles = makeStyles((theme) => ({
 export default function Auto() {
     const dispatch = useDispatch()
     const classes = useStyles();
+    const history = useHistory();
     const [age, setAge] = React.useState('');
     const [marca, setMarca] = React.useState('');
     const [radio, setRadio] = React.useState('0');
@@ -72,7 +73,8 @@ export default function Auto() {
     const [errorAge, setErrorAge] = React.useState(false);
     const [errorMarca, setErrorMarca] = React.useState(false);
     const [errorGas, setErrorGas] = React.useState(false);
-
+    const [name, setName] = React.useState('Sin nombre');
+    let user = useSelector(state => state.main.mainreducer.user)
     const handleChangeAge = (event) => {
         setErrorAge(false)
         setAge(event.target.value);
@@ -94,6 +96,24 @@ export default function Auto() {
     const nextstep = () => {
         dispatch({ type: SET_KEY_TAB, payload: 'second' })
     }
+    useEffect(() => {
+        // console.log('ruseefect');
+        // if (user != []) {
+        setName(user[0].name.first)
+        // }
+
+        return checkstate()
+
+    }, []) // 
+
+
+    const checkstate = () => {
+        if (user == []) {
+            console.log('user==vacio');
+            history.push('/');
+        }
+    }
+
     const validateData = () => {
         let isvalid = false
         if (age != '' && marca != '' && radio != '') {
@@ -161,14 +181,14 @@ export default function Auto() {
         setErrorGas(false)
         setRadio(event.target.value);
     };
-    let user = useSelector(state => state.main.mainreducer.user)
+
     return (
         <>
             <Container>
                 <Link to="/" className="a"><AiOutlineLeftCircle size={30} color="#FC606B" /> &nbsp;VOLVER</Link>
                 <Row>
                     <Col md={6}>
-                        <h3 className="mt-5">¡Hola, <b className="red">{user[0].name.first}!</b></h3>
+                        <h3 className="mt-5">¡Hola, <b className="red">{name}!</b></h3>
                         <p>Completa los datos de tu auto</p>
                         <Row>
 
