@@ -1,11 +1,11 @@
  @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
  @import './colors/color';
  
- body {
+ body ,a,span{
      color: $text;
      font-family: 'Lato', sans-serif!important;
  }
-h1 ,h2,h3,h4,h5
+h1 ,h2,h3,h4,h5,label
 {
     color: $text;
 }
@@ -123,4 +123,65 @@ input[type=number] {
 #title_home
 {
     margin-bottom: 2rem;
+}
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+    background-color: transparent!important;
+    color: $text!important;
+
+}
+.nav-item{
+    margin-left: 2rem;
+    margin-bottom: 1rem;
+}
+ .a{ 
+    color: $placeholder!important;
+}
+.badge-info {
+    color: #fff;
+    background-color: $cyan!important;
+    margin-right: .5rem;
+}
+.full-h{
+    height: 96vh;
+}
+.bg-gray-w{
+    background-color: #F7F8FC;
+}
+.makeStyles-formControl-1{
+    width: 85%!important;
+}
+.makeStyles-formControl-20 ,.MuiFormControl-root {
+    width: 85%!important;
+}
+.span_subtitle{
+    color: $placeholder;
+    font-size: 12px;
+}
+.red{
+        color: $red;
+}
+p{
+    color: $text2;
+}
+ .cyan{
+    color: $cyan!important;
+}
+.btn-1
+{
+    background-color: white!important;
+    color:$cyan!important;
+    border: none!important;
+}
+.btn-2
+{
+    cursor: default!important;
+    background-color: white!important;
+    color:$text!important;
+    border: none!important;
+}
+.btn-group
+{
+    border-radius: 5px;
+    padding: 5px;
+    border:1px #C5CBE0 solid;
 }

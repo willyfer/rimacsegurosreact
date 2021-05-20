@@ -1,10 +1,8 @@
 import { combineReducers } from "redux"
- 
-import auth from "./auth/"
- 
+import main from "./Main/index"
 const rootReducer = combineReducers({
   
-  auth: auth
+  main: main
  
 })
 
