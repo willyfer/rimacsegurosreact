@@ -82,7 +82,7 @@ const AntTab = withStyles((theme) => ({
     root: {
         textTransform: 'none',
         maxWidth: 30,
-        fontSize: 10,
+        fontSize: 12,
         fontWeight: theme.typography.fontWeightRegular,
         marginRight: theme.spacing(0),
 
@@ -155,12 +155,6 @@ export default function Plan() {
                         <h3 className="mt-5">Mira las coberturas</h3>
                         <p>Conoce las coberturas para tu plan</p>
 
-                        <Row className="mt-3 mb-3">
-
-
-
-                        </Row>
-
                         <Row className="mt-4 mb-3">
                             <Card style={{ width: '85%', height: '12rem' }}>
                                 <Card.Body>
@@ -223,9 +217,9 @@ export default function Plan() {
                             </Col>
 
                             <Row>
-                                <Button className="btn btn-primary btn-lg" type="submit"  >
+                                <Link to="/gracias" className="btn btn-primary btn-lg" type="submit"  >
                                     LO QUIERO
-                        </Button>
+                        </Link>
                             </Row>
                         </Container>
                     </Col>

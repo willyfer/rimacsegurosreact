@@ -16,21 +16,18 @@ import {
 import {
     Row,
     Col,
-    Button,
-    Container,
     Image,
-    NavLink,
 
 } from 'react-bootstrap'
 import ToggleButton from '@material-ui/lab/ToggleButton'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import AddIcon from '@material-ui/icons/Add';
 import RemoveIcon from '@material-ui/icons/Remove';
+import { useDispatch, useSelector } from 'react-redux';
 
 import icon_acc1 from '../../../../assets/img/acc_1.svg';
 import icon_acc2 from '../../../../assets/img/acc_2.svg';
 import icon_acc3 from '../../../../assets/img/acc_3.svg';
-import { useDispatch, useSelector } from 'react-redux';
 import { SET_USER_PLAN } from '../../../../redux/actions/Main/MainActions';
 
 const RenderComponent = (props) => {
@@ -40,23 +37,23 @@ const RenderComponent = (props) => {
                 <Image src={props.icon}></Image>
             </Col>
             <Col md={8}>
-
                 <Row>
-                    <Col> <h5 className="acc_title">{props.title}</h5></Col>
-                    <Col>
-                        <ToggleButton
-                            style={{ width: '30px', height: '30px', borderRadius: '15px', zIndex: 100000 }}
-                            value="check"
-                            selected={props.selected3}
-                            onChange={() => {
-                                props.handleSelect('selected3')
-                            }}
-                        >
-                            {props.selected3 ? <RemoveIcon className="cyan" /> : <AddIcon className="cyan" />}
-                        </ToggleButton>
-                        <span id="txt_toogle" className="cyan">{!props.selected3 ? 'AGREGAR' : 'QUITAR'}</span></Col>
-
-
+                    <Col md={12}> <h5 className="acc_title">{props.title}</h5></Col>
+                    <Col md={12}>
+                        <Row>
+                            <ToggleButton
+                                style={{ width: '30px', height: '30px', borderRadius: '15px', zIndex: 100000 }}
+                                value="check"
+                                selected={props.selected4}
+                                onChange={() => {
+                                    props.handleSelect()
+                                }}
+                            >
+                                {props.selected4 ? <RemoveIcon className="cyan" /> : <AddIcon className="cyan" />}
+                            </ToggleButton>
+                            <span id="txt_toogle" className="cyan">{!props.selected4 ? 'AGREGAR' : 'QUITAR'}</span>
+                        </Row>
+                    </Col>
                 </Row>
             </Col>
         </Row>
@@ -106,16 +103,15 @@ export default function Acoordeon() {
                         onClick={(event) => event.stopPropagation()}
                         onFocus={(event) => event.stopPropagation()}
                     >
-                        <RenderComponent icon={icon_acc1} title="Llanta robada " handleSelect={() => handleSelect('selected')} />
+                        <RenderComponent icon={icon_acc1} selected4={selected} title="Llanta robada " handleSelect={() => handleSelect('selected')} />
                     </FormControl>
-
                 </AccordionSummary>
                 <AccordionDetails>
 
                     <Typography>
                         He salido de casa a las cuatro menos cinco para ir a la academia de ingles de mi pueblo (Sant Cugat, al lado de Barcelona) con mi bici, na llego a la academia que está en el centro del pueblo en una plaza medio-grande y dejo donde siempre la bici atada con una pitón a un sitio de esos de poner las bicis
                         y mucho más
-          </Typography>
+                    </Typography>
                 </AccordionDetails>
             </Accordion>
             <Accordion>
@@ -129,7 +125,7 @@ export default function Acoordeon() {
                         onClick={(event) => event.stopPropagation()}
                         onFocus={(event) => event.stopPropagation()}
                     >
-                        <RenderComponent icon={icon_acc2} title="Choque y/o pasarte la luz roja " handleSelect={() => handleSelect('selected2')} />
+                        <RenderComponent icon={icon_acc2} selected4={selected2} title="Choque y/o pasarte la luz roja " handleSelect={() => handleSelect('selected2')} />
                     </FormControl>
                 </AccordionSummary>
                 <AccordionDetails>
@@ -152,7 +148,7 @@ export default function Acoordeon() {
                         onFocus={(event) => event.stopPropagation()}
 
                     >
-                        <RenderComponent icon={icon_acc3} title="Atropello en la vía Evitamiento " handleSelect={() => handleSelect('selected3')} />
+                        <RenderComponent icon={icon_acc3} selected4={selected3} title="Atropello en la vía Evitamiento " handleSelect={() => handleSelect('selected3')} />
                     </FormControl>
 
                 </AccordionSummary>
