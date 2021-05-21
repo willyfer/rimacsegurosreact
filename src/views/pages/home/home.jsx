@@ -9,20 +9,23 @@ import {
     InputGroup,
     Dropdown,
     FormControl,
+    Spinner,
+    Container
 } from 'react-bootstrap';
 import NavbarComponent from '../../../components/NavbarComponent';
 import { useSelector, useDispatch } from 'react-redux'
 import { getCotizar } from '../../../redux/actions/Main/MainActions'
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 import { useHistory } from "react-router-dom";
+import { Paper } from '@material-ui/core';
 export default function Home() {
 
     const [docType, setDocType] = React.useState('');
     const [placa, setPlaca] = React.useState('');
     const [phone, setPhone] = React.useState('');
     const [doc, setDoc] = React.useState('');
-
     const [checkTC, setCheckTC] = React.useState(false);
+    const loading = useSelector(state => state.main.mainreducer.loading);
     let history = useHistory();
     const dispatch = useDispatch()
 
@@ -47,11 +50,11 @@ export default function Home() {
     }
 
     return (
+
         <>
 
             <NavbarComponent />
-
-            <Row>
+            {!loading ? <Row>
 
                 <Col sm={5} id="section_home_img" >
                     {/* <img src={img_home} alt=""   /> */}
@@ -106,7 +109,12 @@ export default function Home() {
                     </Row>
 
                 </Col>
-            </Row>
+            </Row> : <div className=" text-center bg-black-tr ">
+                <Spinner animation="grow" className="mt-5" variant="light"></Spinner>
+                <h5>Cargando...</h5>
+            </div>
+            }
+
 
         </>
     )

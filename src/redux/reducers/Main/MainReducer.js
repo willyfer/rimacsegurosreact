@@ -3,18 +3,23 @@ import {
   SET_USER_AUTO,
   SET_USER_PLAN,
   SET_KEY_TAB,
-  SET_HOME
+  SET_HOME,
+  SET_LOADING
 } from '../../actions/Main/MainActions'
 const initialState = {
   user: [],
   auto: [{ 'marca': '', 'age': '', 'radio': '' }],
   plan: [{ 'monto': 20 }],
   home: [],
+  loading: false,
   keytabdafault: 'first'
 }
 
 const mainreducer = (state = initialState, action) => {
   switch (action.type) {
+    case SET_LOADING:
+
+      return { ...state, loading: action.payload }
     case SET_HOME:
 
       return { ...state, home: [action.payload] }
