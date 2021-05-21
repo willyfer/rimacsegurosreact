@@ -234,7 +234,7 @@ export default function Auto() {
                                     label="marca"
                                 >
                                     {marcas.map((marca, i) => {
-                                        return <MenuItem key={i} value={i}>{marca}</MenuItem>
+                                        return <MenuItem key={i} value={marca}>{marca}</MenuItem>
                                     })}
 
 

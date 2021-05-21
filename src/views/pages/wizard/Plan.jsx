@@ -27,6 +27,7 @@ import {
     Divider,
     Box,
     Typography,
+    Paper,
 
 } from '@material-ui/core';
 import { Card } from 'react-bootstrap';
@@ -117,11 +118,14 @@ export default function Plan() {
     const dispatch = useDispatch()
     const classes = useStyles();
     const [value, setValue] = React.useState(0);
-
+    let auto = useSelector(state => state.main.mainreducer.auto)
+    let user = useSelector(state => state.main.mainreducer.user)
+    let home = useSelector(state => state.main.mainreducer.home)
+    let plan = useSelector(state => state.main.mainreducer.plan)
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
-    let user = useSelector(state => state.main.mainreducer.user)
+
 
     const nextstep = () => {
 
@@ -162,8 +166,8 @@ export default function Plan() {
                                 <Card.Body>
                                     <Row>
                                         <Col md={6}>
-                                            <p>Placa: C2U-114</p>
-                                            <h4>Wolkswagen 2019 Golf</h4>
+                                            <p>Placa: {home[0].placa}</p>
+                                            <h4>{auto[0].marca} {auto[0].age}   Golf</h4>
                                             <Card.Link href="#" className="cyan">EDITAR</Card.Link>
                                         </Col>
                                         <Col md={6}> <Image id="icon_person" src={icon_person}></Image></Col>
@@ -185,7 +189,10 @@ export default function Plan() {
                                 <AntTab label="MEJORA TU PlAN" {...a11yProps(2)} />
                             </AntTabs>
                             <TabPanel value={value} index={0}>
+                                {/* <Paper style={{ maxHeight: 200, overflow: 'auto' }}> */}
                                 <Accordion />
+                                {/* </Paper> */}
+
                             </TabPanel>
                             <TabPanel value={value} index={1}>
 
@@ -200,7 +207,7 @@ export default function Plan() {
                     <Col md={5} className="mt-5">
                         <Container>
                             <Row>
-                                <Col md={6}> <h3>$35.00</h3>
+                                <Col md={6}> <h3>${plan[0].monto}.00</h3>
                                     <p className="mb-3">mensuales</p></Col>
                                 <Col md={6}>
                                     <Image src={icon_escudo}></Image>

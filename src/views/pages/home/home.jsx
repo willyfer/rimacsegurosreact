@@ -36,12 +36,13 @@ export default function Home() {
     }
     const handleCotizar = async (e) => {
         e.preventDefault();
-
-        await dispatch(getCotizar())
+        let data = {
+            'doc': setDocType,
+            'placa': placa,
+            'phone': phone
+        }
+        await dispatch(getCotizar(data))
         history.push("/cotiza");
-
-
-
 
     }
 

@@ -10,6 +10,8 @@ import {
     Accordion,
     AccordionSummary,
     AccordionDetails,
+    FormControlLabel,
+    FormControl
 } from '@material-ui/core';
 import {
     Row,
@@ -17,7 +19,8 @@ import {
     Button,
     Container,
     Image,
-    NavLink
+    NavLink,
+
 } from 'react-bootstrap'
 import ToggleButton from '@material-ui/lab/ToggleButton'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
@@ -25,10 +28,71 @@ import AddIcon from '@material-ui/icons/Add';
 import RemoveIcon from '@material-ui/icons/Remove';
 
 import icon_acc1 from '../../../../assets/img/acc_1.svg';
+import icon_acc2 from '../../../../assets/img/acc_2.svg';
+import icon_acc3 from '../../../../assets/img/acc_3.svg';
+import { useDispatch, useSelector } from 'react-redux';
+import { SET_USER_PLAN } from '../../../../redux/actions/Main/MainActions';
 
+const RenderComponent = (props) => {
+    return (
+        <Row>
+            <Col md={3}>
+                <Image src={props.icon}></Image>
+            </Col>
+            <Col md={8}>
+
+                <Row>
+                    <Col> <h5 className="acc_title">{props.title}</h5></Col>
+                    <Col>
+                        <ToggleButton
+                            style={{ width: '30px', height: '30px', borderRadius: '15px', zIndex: 100000 }}
+                            value="check"
+                            selected={props.selected3}
+                            onChange={() => {
+                                props.handleSelect('selected3')
+                            }}
+                        >
+                            {props.selected3 ? <RemoveIcon className="cyan" /> : <AddIcon className="cyan" />}
+                        </ToggleButton>
+                        <span id="txt_toogle" className="cyan">{!props.selected3 ? 'AGREGAR' : 'QUITAR'}</span></Col>
+
+
+                </Row>
+            </Col>
+        </Row>
+    )
+}
 
 export default function Acoordeon() {
+    let monto = useSelector(state => state.main.mainreducer.plan[0].monto)
+    const dispatch = useDispatch();
+
     const [selected, setSelected] = React.useState(false);
+    const [selected2, setSelected2] = React.useState(false);
+    const [selected3, setSelected3] = React.useState(false);
+    const handleSelect = (type) => {
+        let aux = monto
+        switch (type) {
+
+            case 'selected':
+                setSelected(!selected);
+                !selected ? dispatch({ type: SET_USER_PLAN, payload: monto + 15 }) : dispatch({ type: SET_USER_PLAN, payload: monto - 15 });
+                break;
+            case 'selected2':
+                setSelected2(!selected2);
+                !selected2 ? dispatch({ type: SET_USER_PLAN, payload: monto + 20 }) : dispatch({ type: SET_USER_PLAN, payload: monto - 20 });
+                break;
+            case 'selected3':
+                setSelected3(!selected3);
+                !selected3 ? dispatch({ type: SET_USER_PLAN, payload: monto + 50 }) : dispatch({ type: SET_USER_PLAN, payload: monto - 50 });
+                break;
+            default:
+                break;
+        }
+
+    }
+
+
     return (
         <>
             <Accordion>
@@ -37,29 +101,13 @@ export default function Acoordeon() {
                     aria-controls="panel1a-content"
                     id="panel1a-header"
                 >
-                    <Row>
-                        <Col md={5}>
-                            <Image src={icon_acc1}></Image>
-                        </Col>
-                        <Col md={7}>
-                            <h5>Llanta robada</h5>
-                            <Row>
-                                <ToggleButton
-                                    style={{ width: '30px', height: '30px', borderRadius: '15px' }}
-                                    value="check"
-                                    selected={selected}
-                                    onChange={() => {
-                                        setSelected(!selected);
-                                    }}
-                                >
-                                    {selected ? <RemoveIcon className="cyan" /> : <AddIcon className="cyan" />}
-                                </ToggleButton>
-                                <span id="txt_toogle" className="cyan">{!selected ? 'AGREGAR' : 'QUITAR'}</span>
-                            </Row>
-                        </Col>
-                    </Row>
-
-
+                    <FormControl
+                        aria-label="Acknowledge"
+                        onClick={(event) => event.stopPropagation()}
+                        onFocus={(event) => event.stopPropagation()}
+                    >
+                        <RenderComponent icon={icon_acc1} title="Llanta robada " handleSelect={() => handleSelect('selected')} />
+                    </FormControl>
 
                 </AccordionSummary>
                 <AccordionDetails>
@@ -76,27 +124,13 @@ export default function Acoordeon() {
                     aria-controls="panel2a-content"
                     id="panel2a-header"
                 >
-                    <Row>
-                        <Col md={3}>
-                            <Image src={icon_acc1}></Image>
-                        </Col>
-                        <Col md={8}>
-                            <h5>Choque y/o pasarte la luz roja </h5>
-                            <Row>
-                                <ToggleButton
-                                    style={{ width: '30px', height: '30px', borderRadius: '15px' }}
-                                    value="check"
-                                    selected={selected}
-                                    onChange={() => {
-                                        setSelected(!selected);
-                                    }}
-                                >
-                                    {selected ? <RemoveIcon className="cyan" /> : <AddIcon className="cyan" />}
-                                </ToggleButton>
-                                <span id="txt_toogle" className="cyan">{!selected ? 'AGREGAR' : 'QUITAR'}</span>
-                            </Row>
-                        </Col>
-                    </Row>
+                    <FormControl
+                        aria-label="Acknowledge"
+                        onClick={(event) => event.stopPropagation()}
+                        onFocus={(event) => event.stopPropagation()}
+                    >
+                        <RenderComponent icon={icon_acc2} title="Choque y/o pasarte la luz roja " handleSelect={() => handleSelect('selected2')} />
+                    </FormControl>
                 </AccordionSummary>
                 <AccordionDetails>
                     <Typography>
@@ -106,35 +140,25 @@ export default function Acoordeon() {
             </Accordion>
             <Accordion  >
                 <AccordionSummary
+
                     expandIcon={<ExpandMoreIcon />}
                     aria-controls="panel3a-content"
                     id="panel3a-header"
+                    style={{ zIndex: 1 }}
                 >
-                    <Row>
-                        <Col md={3}>
-                            <Image src={icon_acc1}></Image>
-                        </Col>
-                        <Col md={8}>
-                            <h5 >Atropello en la vía Evitamiento </h5>
-                            <Row>
-                                <ToggleButton
-                                    style={{ width: '30px', height: '30px', borderRadius: '15px' }}
-                                    value="check"
-                                    selected={selected}
-                                    onChange={() => {
-                                        setSelected(!selected);
-                                    }}
-                                >
-                                    {selected ? <RemoveIcon className="cyan" /> : <AddIcon className="cyan" />}
-                                </ToggleButton>
-                                <span id="txt_toogle" className="cyan">{!selected ? 'AGREGAR' : 'QUITAR'}</span>
-                            </Row>
-                        </Col>
-                    </Row>
+                    <FormControl
+                        aria-label="Acknowledge"
+                        onClick={(event) => event.stopPropagation()}
+                        onFocus={(event) => event.stopPropagation()}
+
+                    >
+                        <RenderComponent icon={icon_acc3} title="Atropello en la vía Evitamiento " handleSelect={() => handleSelect('selected3')} />
+                    </FormControl>
+
                 </AccordionSummary>
                 <AccordionDetails>
                     <Typography>
-                        fdf
+
                     </Typography>
                 </AccordionDetails>
             </Accordion>
